@@ -12,9 +12,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_15_134127) do
+ActiveRecord::Schema.define(version: 2019_01_17_135846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companionships", id: false, force: :cascade do |t|
+    t.bigint "species_id"
+    t.bigint "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id", "species_id"], name: "index_companionships_on_friend_id_and_species_id", unique: true
+    t.index ["species_id", "friend_id"], name: "index_companionships_on_species_id_and_friend_id", unique: true
+  end
+
+  create_table "plants", force: :cascade do |t|
+    t.integer "planted_number"
+    t.date "sowed_at"
+    t.date "planted_at"
+    t.bigint "species_id"
+    t.bigint "ridges_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ridges_id"], name: "index_plants_on_ridges_id"
+    t.index ["species_id"], name: "index_plants_on_species_id"
+  end
+
+  create_table "ridges", force: :cascade do |t|
+    t.integer "area"
+    t.date "started_at"
+    t.date "ended_at"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ridges_on_user_id"
+  end
+
+  create_table "species", force: :cascade do |t|
+    t.bit "sowing_months", limit: 36
+    t.bit "harvest_months", limit: 36
+    t.integer "days_to_harvest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
