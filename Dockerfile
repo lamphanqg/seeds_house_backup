@@ -1,7 +1,9 @@
 FROM ruby:2.6
-RUN apt-get update -qq && apt-get install -y postgresql-client
+RUN apt-get update -qq && apt-get install -y postgresql-client libnss3-dev
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i google-chrome*.deb || apt update && apt-get install -f -y
 RUN mkdir /seeds_house
 WORKDIR /seeds_house
 COPY Gemfile /seeds_house/Gemfile
