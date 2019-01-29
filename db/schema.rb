@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_135846) do
+ActiveRecord::Schema.define(version: 2019_01_29_130651) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +22,16 @@ ActiveRecord::Schema.define(version: 2019_01_17_135846) do
     t.datetime "updated_at", null: false
     t.index ["friend_id", "species_id"], name: "index_companionships_on_friend_id_and_species_id", unique: true
     t.index ["species_id", "friend_id"], name: "index_companionships_on_species_id_and_friend_id", unique: true
+  end
+
+  create_table "plant_seasons", force: :cascade do |t|
+    t.bit "sow_months", limit: 36
+    t.bit "plant_months", limit: 36
+    t.bit "harvest_months", limit: 36
+    t.bigint "species_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["species_id"], name: "index_plant_seasons_on_species_id"
   end
 
   create_table "plants", force: :cascade do |t|
@@ -48,11 +57,10 @@ ActiveRecord::Schema.define(version: 2019_01_17_135846) do
   end
 
   create_table "species", force: :cascade do |t|
-    t.bit "sowing_months", limit: 36
-    t.bit "harvest_months", limit: 36
-    t.integer "days_to_harvest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "family"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,4 +74,5 @@ ActiveRecord::Schema.define(version: 2019_01_17_135846) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
 end
