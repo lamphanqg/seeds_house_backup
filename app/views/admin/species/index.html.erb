@@ -1,0 +1,7 @@
+<div class="list-group">
+  <% @species.each do |species| %>
+    <%= link_to species.name, admin_species_edit_path(species.id) %>
+  <% end %>
+</div>
+
+<%= link_to "追加", admin_species_new_path, class: "btn btn-primary" %>

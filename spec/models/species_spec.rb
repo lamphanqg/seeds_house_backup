@@ -5,19 +5,26 @@ require "rails_helper"
 RSpec.describe Species, type: :model do
   let(:cabbage_season) {
     PlantSeason.create(
-      sow_months: "0" * 2 + "1" * 2 + "0" * 32,
-      plant_months: "0" * 7 + "1" * 2 + "0" * 27,
-      harvest_months: "0" * 15 + "1" * 4 + "0" * 17
+      sow_months_start: 3,
+      sow_months_end: 4,
+      plant_months_start: 8,
+      plant_months_end: 9,
+      harvest_months_start: 16,
+      harvest_months_end: 19
     )
   }
 
   let(:letuce_season) {
     PlantSeason.create(
-      sow_months: "0" * 1 + "1" * 3 + "0" * 32,
-      plant_months: "0" * 6 + "1" * 3 + "0" * 27,
-      harvest_months: "0" * 13 + "1" * 3 + "0" *20
+      sow_months_start: 2,
+      sow_months_end: 4,
+      plant_months_start: 7,
+      plant_months_end: 9,
+      harvest_months_start: 14,
+      harvest_months_end: 16
     )
   }
+
 
   let(:cabbage) {
     Species.create(name: "キャベツ", family: "アブラナ科", plant_seasons: [cabbage_season])

@@ -1,0 +1,70 @@
+<%= form_tag(admin_species_create_path, method: "post") do %>
+  <div class="form-group row">
+    <label for="name" class="col-sm-2 col-form-label">名前</label>
+    <div class="col-sm-10">
+      <input type="text" name="name" class="form-control" placeholder="トマト">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="family" class="col-sm-2 col-form-label">科</label>
+    <div class="col-sm-10">
+      <input type="text" name="family" class="form-control" placeholder="ナス科">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>栽培カレンダー</label>
+    <br>
+    <label><small>種まき</small></label>
+    <div class="row">
+      <div class="col-4">
+        <%= season_select("sow_months_start") %>
+      </div>
+      <div class="col-2">
+        <small>から</small>
+      </div>
+      <div class="col-4">
+        <%= season_select("sow_months_end") %>
+      </div>
+      <div class="col-2">
+        <small>まで</small>
+      </div>
+    </div>
+    <br>
+    <label><small>植え付け</small></label>
+    <div class="row">
+      <div class="col-4">
+        <%= season_select("plant_months_start") %>
+      </div>
+      <div class="col-2">
+        <small>から</small>
+      </div>
+      <div class="col-4">
+        <%= season_select("plant_months_end") %>
+      </div>
+      <div class="col-2">
+        <small>まで</small>
+      </div>
+    </div>
+    <br>
+    <label><small>収穫</small></label>
+    <div class="row">
+      <div class="col-4">
+        <%= season_select("harvest_months_start") %>
+      </div>
+      <div class="col-2">
+        <small>から</small>
+      </div>
+      <div class="col-4">
+        <%= season_select("harvest_months_end") %>
+      </div>
+      <div class="col-2">
+        <small>まで</small>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to "一覧に戻る", admin_species_index_path, class: "btn btn-secondary" %>
+  <%= submit_tag "作成", class: "btn btn-primary" %>
+<% end %>
