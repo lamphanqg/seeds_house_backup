@@ -20,6 +20,8 @@ services:
       rails-network:
         aliases:
           - web.com
+    stdin_open: true
+    tty: true
   chrome:
     image: selenium/standalone-chrome-debug:3.9.1-actinium
     ports:
