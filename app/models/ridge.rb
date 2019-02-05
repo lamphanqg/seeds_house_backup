@@ -11,15 +11,15 @@ class Ridge < ApplicationRecord
   end
 
   private
-  def started_at_cannot_be_in_the_future
-    if !started_at.nil? && started_at > Date.current
-      errors.add(:started_at, "can't be in the future")
+    def started_at_cannot_be_in_the_future
+      if !started_at.nil? && started_at > Date.current
+        errors.add(:started_at, "can't be in the future")
+      end
     end
-  end
 
-  def ended_at_cannot_be_in_the_future
-    if !ended_at.nil? && ended_at > Date.current
-      errors.add(:ended_at, "can't be in the future")
+    def ended_at_cannot_be_in_the_future
+      if !ended_at.nil? && ended_at > Date.current
+        errors.add(:ended_at, "can't be in the future")
+      end
     end
-  end
 end

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Species",type: :feature, js: true do
+RSpec.feature "Species", type: :feature, js: true do
   let(:admin_user) {
     User.create(
       email: "admin@dummy.com",

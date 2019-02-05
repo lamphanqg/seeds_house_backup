@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def asset_exists?(subdirectory, filename)
-    File.exists?(File.join(Rails.root, 'app', 'assets', subdirectory, filename))
+    File.exist?(File.join(Rails.root, "app", "assets", subdirectory, filename))
   end
 
   def js_exists?(filename)
