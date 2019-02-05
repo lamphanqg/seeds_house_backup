@@ -29,6 +29,9 @@
       </div>
     </header>
     <div class="container-fluid">
+      <% flash.each do |key, value| %>
+        <%= dimissible_flash(key, value) %>
+      <% end %>
       <%= yield %>
     </div>
 
