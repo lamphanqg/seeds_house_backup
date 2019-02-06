@@ -39,5 +39,8 @@ module SeedsHouse
                        helper_specs: false,
                        routing_specs: false
     end
+
+    I18n.available_locales = [:ja]
+    I18n.default_locale = :ja
   end
 end

@@ -42,4 +42,11 @@ RSpec.describe Species, type: :model do
     cabbage.friends << letuce
     expect(letuce.save! && cabbage.save! && letuce.is_a_friend_of?(cabbage)).to be true
   end
+
+  it "is invalid if name is not unique" do
+    cabbage1 = cabbage
+    cabbage2 = Species.new(name: "キャベツ", family: "アブラナ科", plant_seasons: [cabbage_season])
+    cabbage2.valid?
+    expect(cabbage2.errors[:name]).to include("はすでに存在します")
+  end
 end
