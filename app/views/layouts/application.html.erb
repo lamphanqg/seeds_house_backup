@@ -29,12 +29,12 @@
       </div>
     </header>
     <div class="container-fluid">
+      <h1><%= @page_title %></h1>
       <% flash.each do |key, value| %>
         <%= dimissible_flash(key, value) %>
       <% end %>
       <%= yield %>
     </div>
-
 
     <%= javascript_include_tag params[:controller] if js_exists?(params[:controller].to_s) %>
   </body>

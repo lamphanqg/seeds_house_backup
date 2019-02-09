@@ -10,4 +10,16 @@ module SpeciesHelper
     end
     select_tag(name, options_for_select(options, nil), class: "form-control form-control-sm")
   end
+
+  def add_species_link
+    return if !admin_user?
+    link_to "追加", admin_species_new_path, class: "btn btn-primary"
+  end
+
+  def species_list_item(species)
+    link_to(admin_species_edit_path(species.id), class: "list-group-item list-group-item-action") do
+      content_tag(:h5, species.name) +
+      content_tag(:p, species.family)
+    end
+  end
 end

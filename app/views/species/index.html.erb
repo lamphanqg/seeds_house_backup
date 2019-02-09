@@ -1,0 +1,7 @@
+<div class="list-group">
+  <% @species.each do |species| %>
+    <%= species_list_item(species) %>
+  <% end %>
+</div>
+
+<%= add_species_link %>

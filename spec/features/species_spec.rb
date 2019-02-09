@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Species, type: :model do
+RSpec.feature "Species", type: :feature, js: true do
   let(:cabbage_season) {
     PlantSeason.create(
       sow_months_start: 3,
@@ -33,19 +33,13 @@ RSpec.describe Species, type: :model do
     Species.create(name: "レタス", family: "キク科", plant_seasons: [letuce_season])
   }
 
-  it "is valid with a name, a family, a plant season" do
-    expect(cabbage).to be_valid
-  end
+  scenario "display species list page" do
+    species_array = [cabbage, letuce]
+    visit species_index_path
 
-  it "can have a companion plant" do
-    cabbage.friends << letuce
-    expect(letuce.save! && cabbage.save! && letuce.is_a_friend_of?(cabbage)).to be true
-  end
-
-  it "is invalid if name is not unique" do
-    cabbage1 = cabbage
-    cabbage2 = Species.new(name: "キャベツ", family: "アブラナ科", plant_seasons: [cabbage_season])
-    cabbage2.valid?
-    expect(cabbage2.errors[:name]).to include("はすでに存在します")
+    species_array.each do |species|
+      expect(page).to have_text(species.name)
+      expect(page).to have_text(species.family)
+    end
   end
 end

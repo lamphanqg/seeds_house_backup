@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.feature "Species", type: :feature, js: true do
+RSpec.feature "AdminSpecies", type: :feature, js: true do
   let(:admin_user) {
     User.create(
       email: "admin@dummy.com",
@@ -17,7 +17,7 @@ RSpec.feature "Species", type: :feature, js: true do
     fill_in "Email", with: admin_user.email
     fill_in "Password", with: admin_user.password
     click_button "Log in"
-    visit admin_species_index_path
+    visit species_index_path
 
     expect {
       click_link "追加"

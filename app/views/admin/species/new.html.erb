@@ -13,58 +13,8 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <label>栽培カレンダー</label>
-    <br>
-    <label><small>種まき</small></label>
-    <div class="row">
-      <div class="col-4">
-        <%= season_select("sow_months_start") %>
-      </div>
-      <div class="col-2">
-        <small>から</small>
-      </div>
-      <div class="col-4">
-        <%= season_select("sow_months_end") %>
-      </div>
-      <div class="col-2">
-        <small>まで</small>
-      </div>
-    </div>
-    <br>
-    <label><small>植え付け</small></label>
-    <div class="row">
-      <div class="col-4">
-        <%= season_select("plant_months_start") %>
-      </div>
-      <div class="col-2">
-        <small>から</small>
-      </div>
-      <div class="col-4">
-        <%= season_select("plant_months_end") %>
-      </div>
-      <div class="col-2">
-        <small>まで</small>
-      </div>
-    </div>
-    <br>
-    <label><small>収穫</small></label>
-    <div class="row">
-      <div class="col-4">
-        <%= season_select("harvest_months_start") %>
-      </div>
-      <div class="col-2">
-        <small>から</small>
-      </div>
-      <div class="col-4">
-        <%= season_select("harvest_months_end") %>
-      </div>
-      <div class="col-2">
-        <small>まで</small>
-      </div>
-    </div>
-  </div>
+  <%= render "plant_season_form_group" %>
 
-  <%= link_to "一覧に戻る", admin_species_index_path, class: "btn btn-secondary" %>
+  <%= link_to "一覧に戻る", species_index_path, class: "btn btn-secondary" %>
   <%= submit_tag "作成", class: "btn btn-primary" %>
 <% end %>
