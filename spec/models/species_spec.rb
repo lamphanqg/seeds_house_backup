@@ -3,8 +3,10 @@
 require "rails_helper"
 
 RSpec.describe Species, type: :model do
-  let(:cabbage_season) {
-    PlantSeason.create(
+  let!(:cabbage) {
+    Species.create(
+      name: "キャベツ",
+      family: "アブラナ科",
       sow_months_start: 3,
       sow_months_end: 4,
       plant_months_start: 8,
@@ -14,8 +16,10 @@ RSpec.describe Species, type: :model do
     )
   }
 
-  let(:letuce_season) {
-    PlantSeason.create(
+  let(:letuce) {
+    Species.create(
+      name: "レタス",
+      family: "キク科",
       sow_months_start: 2,
       sow_months_end: 4,
       plant_months_start: 7,
@@ -23,14 +27,6 @@ RSpec.describe Species, type: :model do
       harvest_months_start: 14,
       harvest_months_end: 16
     )
-  }
-
-  let(:cabbage) {
-    Species.create(name: "キャベツ", family: "アブラナ科", plant_seasons: [cabbage_season])
-  }
-
-  let(:letuce) {
-    Species.create(name: "レタス", family: "キク科", plant_seasons: [letuce_season])
   }
 
   it "is valid with a name, a family, a plant season" do
@@ -43,8 +39,16 @@ RSpec.describe Species, type: :model do
   end
 
   it "is invalid if name is not unique" do
-    cabbage1 = cabbage
-    cabbage2 = Species.new(name: "キャベツ", family: "アブラナ科", plant_seasons: [cabbage_season])
+    cabbage2 = Species.new(
+                 name: "キャベツ",
+                 family: "アブラナ科",
+                 sow_months_start: 3,
+                 sow_months_end: 4,
+                 plant_months_start: 8,
+                 plant_months_end: 9,
+                 harvest_months_start: 16,
+                 harvest_months_end: 19
+               )
     cabbage2.valid?
     expect(cabbage2.errors[:name]).to include("はすでに存在します")
   end
