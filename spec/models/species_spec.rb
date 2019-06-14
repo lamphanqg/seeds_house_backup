@@ -35,7 +35,7 @@ RSpec.describe Species, type: :model do
 
   it "can have a companion plant" do
     cabbage.friends << letuce
-    expect(letuce.save! && cabbage.save! && letuce.is_a_friend_of?(cabbage)).to be true
+    expect(letuce.save! && cabbage.save! && letuce.is_a_friend_of?(cabbage) && cabbage.is_a_friend_of?(letuce)).to be true
   end
 
   it "is invalid if name is not unique" do
